@@ -1,0 +1,26 @@
+﻿@using EPiServer.Shell
+@using System.Web.Mvc.Html
+@inherits System.Web.Mvc.WebViewPage<Zone.Episerver.PropertyViewer.Models.PropertyViewerModel>
+@{
+    Layout = Paths.ToResource("Zone.Episerver.PropertyViewer", "Views/Shared/Layouts/_AdminPlugin.cshtml");
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+}
+
+@section Scripts {
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="@Paths.ToClientResource("Zone.Episerver.PropertyViewer", "ClientResources/property-viewer.js")"></script>
+}
+
+<div class="epi-contentContainer">
+    <div class="epi-formArea">
+        @Html.HiddenFor(m => m.PageId)
+        <div id="jstree" class="epi-paddingVertical-small episerver-pagetree-selfcontained"></div>
+        <div id="propertyList" class="epi-size20"></div>
+        <div id="blockPropertyList" class="epi-size20"></div>
+        <div id="results" class="epi-size20"></div>
+    </div>
+</div>

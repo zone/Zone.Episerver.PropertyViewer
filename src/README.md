@@ -1,2 +1,2 @@
 # Zone.Episerver.PropertyViewer
-An Episerver add-on for viewing multilingual properties
+An Episerver add-on for previewing multilingual properties

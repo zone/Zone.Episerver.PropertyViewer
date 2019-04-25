@@ -1,0 +1,37 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Zone.Episerver.PropertyViewer.Models.PropertyValuesModel>
+
+<table class="epi-default">
+    <colgroup>
+        <col style="width:10%">
+        <col style="width:90%">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>Language</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.PropertyValues)
+    {
+        <tr>
+            <td>
+                @item.Language
+            </td>
+            <td>
+                @RenderValue(item.Value)
+            </td>
+        </tr>
+    }
+</table>
+
+@helper RenderValue(string propertyValue)
+{
+    if (propertyValue == "True")
+    {
+        <img src="/App_Themes/Default/Images/Tools/png/Check.png" alt="True" align="center" />
+    }
+    else
+    {
+        @propertyValue
+    }
+}

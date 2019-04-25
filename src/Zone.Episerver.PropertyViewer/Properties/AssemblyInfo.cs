@@ -1,13 +1,14 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Zone.Episerver.PropertyViewer")]
-[assembly: AssemblyDescription("An Episerver plugin for viewing multilingual properties")]
+[assembly: AssemblyDescription("An Episerver add-on for previewing multilingual properties")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Zone - a Cognizant Digital Business")]
+[assembly: AssemblyCompany("Zone")]
 [assembly: AssemblyProduct("Zone.Episerver.PropertyViewer")]
 [assembly: AssemblyCopyright("Copyright © 2019")]
 [assembly: AssemblyTrademark("")]
@@ -19,6 +20,15 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("aaf63d28-9f07-4c57-9ea5-f1c41fae7793")]
+[assembly: Guid("6bbfb6a0-27da-48b8-b267-0bf0f05d1b5a")]
 
-[assembly: AssemblyVersion("1.0.*")]
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+[assembly: AssemblyVersion("0.1.*")]
