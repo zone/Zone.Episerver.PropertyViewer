@@ -62,6 +62,7 @@
     <!-- Create the Versioned out dir for the client resources-->
     <MakeDir Directories="$(TmpOutDir)\content\$(Version)" />
 
+    <!-- Copy project files to temp dir -->
     <ItemGroup>
       <ViewFiles Include="$(ProjectDir)\Views\**\*.*"/>
       <ClientResources Include="$(ProjectDir)\ClientResources\**\*.*"/>
@@ -81,6 +82,9 @@
       OverwriteExistingFile="true" />
 
     <!-- Create the package -->
+    <RemoveDir Directories="$(OutDir)\package\" />
+    <MakeDir Directories="$(OutDir)\package\" />
+
     <PropertyGroup>
       <NugetCommand>
         "$(NuGetExe)" pack "$(NuspecFile)" -OutputDirectory "$(OutDir)\package" -Version "$(Version)" -Properties Configuration=$(Configuration)
@@ -92,11 +96,16 @@
     <!-- Cleanup -->
     <RemoveDir Directories="$(TmpOutDir)" />
 
-    <!-- Copy to local nuget - change DestinationFolder below -->
+    <ItemGroup>
+      <OldPackages Include="$(ProjectDir)\Packager\*.nupkg" />
+    </ItemGroup>
+    <Delete Files="@(OldPackages)" />
+
+    <!-- Copy to local nuget -->
     <ItemGroup>
       <_CopyItems Include="$(OutDir)\package\*.nupkg" />
     </ItemGroup>
-    <Copy SourceFiles="@(_CopyItems)" DestinationFolder="C:\Nuget.Local" />    
+    <Copy SourceFiles="@(_CopyItems)" DestinationFolder="$(ProjectDir)\Packager\" />    
 
   </Target>
 
