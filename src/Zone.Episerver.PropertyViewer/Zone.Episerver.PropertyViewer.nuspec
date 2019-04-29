@@ -2,12 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Zone.Episerver.PropertyViewer</id>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <title>Zone.Episerver.PropertyViewer</title>
-    <authors>ophilpott</authors>
-    <owners>ophilpott</owners>
+    <authors>Ollie Philpott</authors>
+    <owners>Zone</owners>
+    <licenseUrl>https://github.com/zone/Zone.Episerver.PropertyViewer/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An Episerver add-on for previewing multilingual properties</description>
+    <projectUrl>https://github.com/zone/Zone.Episerver.PropertyViewer/</projectUrl>
     <copyright>Copyright © 2019</copyright>
     <tags>EPiServerModulePackage EPiServerAddOn Episerver Zone</tags>
     <dependencies>
