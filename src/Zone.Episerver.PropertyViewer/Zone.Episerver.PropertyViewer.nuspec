@@ -11,10 +11,10 @@
     <copyright>Copyright © 2019</copyright>
     <tags>EPiServerModulePackage EPiServerAddOn Episerver Zone</tags>
     <dependencies>
-      <dependency id="EPiServer.CMS.AspNet" version="[11.9.2,12.0.0)" />
-      <dependency id="EPiServer.CMS.Core" version="[11.9.2,12.0.0)" />
-      <dependency id="EPiServer.CMS.UI.Core" version="[11.5.3,12.0.0)" />
-      <dependency id="EPiServer.Framework" version="[11.9.2,12.0.0)" />
+      <dependency id="EPiServer.CMS.AspNet" version="[11.3.0,12.0.0)" />
+      <dependency id="EPiServer.CMS.Core" version="[11.3.0,12.0.0)" />
+      <dependency id="EPiServer.CMS.UI.Core" version="[11.4.1,12.0.0)" />
+      <dependency id="EPiServer.Framework" version="[11.3.0,12.0.0)" />
       <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" />
     </dependencies>
   </metadata>
