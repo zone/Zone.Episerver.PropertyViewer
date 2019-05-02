@@ -292,8 +292,8 @@
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Zone.Episerver.PropertyViewer, Version=0.1.7058.17987, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Zone.Episerver.PropertyViewer.0.1.7058.17987\lib\net461\Zone.Episerver.PropertyViewer.dll</HintPath>
+    <Reference Include="Zone.Episerver.PropertyViewer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zone.Episerver.PropertyViewer.1.0.0.0\lib\net461\Zone.Episerver.PropertyViewer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup>
@@ -463,12 +463,12 @@
     <Content Include="modules\_protected\EPiServer.Search.Cms\module.config" />
     <Content Include="modules\_protected\EPiServer.Cms.TinyMce\web.config" />
     <Content Include="modules\_protected\EPiServer.Cms.TinyMce\EPiServer.Cms.TinyMce.zip" />
-    <Content Include="modules\_protected\Zone.Episerver.PropertyViewer\Zone.Episerver.PropertyViewer.zip" />
-    <Content Include="modules\_protected\Zone.Episerver.PropertyViewer\Web.config" />
     <Content Include="modules\_protected\Shell\web.config" />
     <Content Include="modules\_protected\Shell\Shell.zip" />
     <Content Include="modules\_protected\CMS\web.config" />
     <Content Include="modules\_protected\CMS\CMS.zip" />
+    <Content Include="modules\_protected\Zone.Episerver.PropertyViewer\Zone.Episerver.PropertyViewer.zip" />
+    <Content Include="modules\_protected\Zone.Episerver.PropertyViewer\Web.config" />
     <None Include="Views\_ReadMe.txt" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
