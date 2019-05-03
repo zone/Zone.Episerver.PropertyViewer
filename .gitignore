@@ -331,3 +331,4 @@ ASALocalRun/
 
 # Episerver blobs
 blobs/
+src/Zone.Episerver.PropertyViewer.Sample/modules/_protected/Zone.Episerver.PropertyViewer/

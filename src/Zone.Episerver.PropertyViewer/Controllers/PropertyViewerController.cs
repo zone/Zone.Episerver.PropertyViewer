@@ -128,6 +128,7 @@ namespace Zone.Episerver.PropertyViewer.Controllers
             var propertyValues = languageVersions.Select(x => new PropertyValueModel
             {
                 Language = x.Language.Name,
+                ContentLink = x.ContentLink,
                 Value = x.GetPropertyValue(reference.PropertyName)
             });
 
