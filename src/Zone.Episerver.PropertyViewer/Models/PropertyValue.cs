@@ -2,7 +2,7 @@
 
 namespace Zone.Episerver.PropertyViewer.Models
 {
-    public class PropertyValueModel
+    public class PropertyValue
     {
         public string Language { get; set; }
 
