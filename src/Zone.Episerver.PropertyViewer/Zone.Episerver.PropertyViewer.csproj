@@ -32,6 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -176,6 +177,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Zone.Episerver.PropertyViewer, Version=1.0.0.18552, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zone.Episerver.PropertyViewer.1.0.0.18552\lib\net461\Zone.Episerver.PropertyViewer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -189,11 +193,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PropertyViewerController.cs" />
-    <Compile Include="Initialization\CustomRouteInitialization.cs" />
+    <Compile Include="Core\Initialization\DependencyInitialization.cs" />
+    <Compile Include="Core\Initialization\CustomRouteInitialization.cs" />
+    <Compile Include="Core\Services\IPropertyService.cs" />
+    <Compile Include="Core\Services\PropertyService.cs" />
     <Compile Include="Models\BlockPropertyListModel.cs" />
     <Compile Include="Models\PropertyListModel.cs" />
+    <Compile Include="Models\LocalBlockRefence.cs" />
     <Compile Include="Models\PropertyReference.cs" />
-    <Compile Include="Models\PropertyValueModel.cs" />
+    <Compile Include="Models\PropertyValue.cs" />
     <Compile Include="Models\PropertyValuesModel.cs" />
     <Compile Include="Models\PropertyViewerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

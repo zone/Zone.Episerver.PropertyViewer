@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.PlugIn;
 using EPiServer.Shell;
+using Zone.Episerver.PropertyViewer.Core.Services;
 using Zone.Episerver.PropertyViewer.Models;
 using PlugInArea = EPiServer.PlugIn.PlugInArea;
-
 
 namespace Zone.Episerver.PropertyViewer.Controllers
 {
@@ -18,25 +17,25 @@ namespace Zone.Episerver.PropertyViewer.Controllers
     [Authorize(Roles = "Administrators,WebAdmins")]
     public class PropertyViewerController : Controller
     {
+        private readonly IPropertyService _propertyService;
         private readonly IContentLoader _contentLoader;
-        private readonly IContentRepository _contentRepository;
 
         public PropertyViewerController(
-            IContentLoader contentLoader,
-            IContentRepository contentRepository)
+            IPropertyService propertyService,
+            IContentLoader contentLoader)
         {
+            _propertyService = propertyService;
             _contentLoader = contentLoader;
-            _contentRepository = contentRepository;
         }
 
         public ViewResult Index()
         {
-            return View(Paths.ToResource("Zone.Episerver.PropertyViewer", "Views/PropertyViewer/Index.cshtml"), new PropertyViewerModel());
+            return View(GetPath("Index"), new PropertyViewerModel());
         }
 
         public JsonResult GetContentTree(int id = 1)
         {
-            var page = GetPage(id);
+            _contentLoader.TryGet(new ContentReference(id), out PageData page);
 
             return Json(new
             {
@@ -53,97 +52,47 @@ namespace Zone.Episerver.PropertyViewer.Controllers
 
         public PartialViewResult GetProperties(int pageId)
         {
-            var page = GetPage(pageId);
             var model = new PropertyListModel
             {
-                PageProperties = GetProperties(page)
+                PageProperties = _propertyService.GetPropertyNames(pageId)
             };
 
-            return PartialView(Paths.ToResource("Zone.Episerver.PropertyViewer", "Views/PropertyViewer/_PropertyList.cshtml"), model);
+            return PartialView(GetPath("_PropertyList"), model);
         }
 
         public PartialViewResult GetPropertyValues(PropertyReference reference)
         {
-            if (IsBlock(reference))
+            if (_propertyService.IsBlock(reference))
             {
-                var blockModel = BuildBlockPropertyListModel(reference);
-                return PartialView(Paths.ToResource("Zone.Episerver.PropertyViewer", "Views/PropertyViewer/_BlockPropertyList.cshtml"), blockModel);
+                var blockModel =  new BlockPropertyListModel
+                {
+                    BlockProperties = _propertyService.GetBlockPropertyNames(reference)
+                };
+
+                return PartialView(GetPath("BlockPropertyList"), blockModel);
             }
 
-            var model = BuildPropertyValuesModel(reference);
-
-            return PartialView(Paths.ToResource("Zone.Episerver.PropertyViewer", "Views/PropertyViewer/_PropertyValues.cshtml"), model);
-        }
-
-        public PartialViewResult GetBlockPropertyValues(int pageId, string propertyName, string blockPropertyName)
-        {
-            var languageVersions = _contentRepository.GetLanguageBranches<PageData>(new ContentReference(pageId));
-            var propertyValues = languageVersions.Select(x => new PropertyValueModel
-            {
-                Language = x.Language.Name,
-                Value = x.Property
-                        .GetPropertyValue<BlockData>(propertyName)
-                        .GetPropertyValue(blockPropertyName)
-            });
             var model = new PropertyValuesModel
             {
-                PropertyValues = propertyValues   
+                PropertyValues = _propertyService.GetPropertyValues(reference)
             };
 
-            return PartialView(Paths.ToResource("Zone.Episerver.PropertyViewer", "Views/PropertyViewer/_PropertyValues.cshtml"), model);
+            return PartialView(GetPath("_PropertyValues"), model);
         }
 
-        private IEnumerable<string> GetProperties(IContentData content)
+        public PartialViewResult GetBlockPropertyValues(LocalBlockPropertyReference propertyReference)
         {
-            return content.Property
-                .Where(x => x.IsPropertyData)
-                .Select(x => x.Name)
-                .OrderBy(x => x)
-                .ToList();
-        }
-
-        private PageData GetPage(int pageId)
-        {
-            PageData page;
-            _contentLoader.TryGet(new ContentReference(pageId), out page);
-
-            return page;
-        }
-
-        private PropertyData GetProperty(PropertyReference reference)
-        {
-            var page = GetPage(reference.PageId);
-            return page.Property.Get(reference.PropertyName);
-        }
-
-        private bool IsBlock(PropertyReference reference)
-        {
-            var property = GetProperty(reference);
-            return property.Type == PropertyDataType.Block;
-        }
-
-        private PropertyValuesModel BuildPropertyValuesModel(PropertyReference reference)
-        {
-            var languageVersions = _contentRepository.GetLanguageBranches<PageData>(new ContentReference(reference.PageId));
-            var propertyValues = languageVersions.Select(x => new PropertyValueModel
+            var model = new PropertyValuesModel
             {
-                Language = x.Language.Name,
-                Value = x.GetPropertyValue(reference.PropertyName)
-            });
-
-            return new PropertyValuesModel
-            {
-                PropertyValues = propertyValues
+                PropertyValues = _propertyService.GetBlockPropertyValues(propertyReference)   
             };
+
+            return PartialView(GetPath("_PropertyValues"), model);
         }
 
-        private BlockPropertyListModel BuildBlockPropertyListModel(PropertyReference reference)
+        private static string GetPath(string viewName)
         {
-            var property = GetProperty(reference);
-            return new BlockPropertyListModel
-            {
-                BlockProperties = GetProperties((BlockData)property.Value)
-            };
+            return Paths.ToResource("Zone.Episerver.PropertyViewer", $"Views/PropertyViewer/{viewName}.cshtml");
         }
     }
 }

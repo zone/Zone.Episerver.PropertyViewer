@@ -292,8 +292,8 @@
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Zone.Episerver.PropertyViewer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Zone.Episerver.PropertyViewer.1.0.0.0\lib\net461\Zone.Episerver.PropertyViewer.dll</HintPath>
+    <Reference Include="Zone.Episerver.PropertyViewer, Version=1.0.0.18177, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zone.Episerver.PropertyViewer.1.0.0.18177\lib\net461\Zone.Episerver.PropertyViewer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup>

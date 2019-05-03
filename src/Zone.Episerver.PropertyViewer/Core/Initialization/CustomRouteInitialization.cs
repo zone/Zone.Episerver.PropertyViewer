@@ -3,7 +3,7 @@ using System.Web.Routing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 
-namespace Zone.Episerver.PropertyViewer.Initialization
+namespace Zone.Episerver.PropertyViewer.Core.Initialization
 {
     [InitializableModule]
     public class CustomRouteInitialization : IInitializableModule
