@@ -1,15 +1,18 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Zone.Episerver.PropertyViewer.Models.PropertyValuesModel>
+﻿@using EPiServer.Editor
+@inherits System.Web.Mvc.WebViewPage<Zone.Episerver.PropertyViewer.Models.PropertyValuesModel>
 
 <table class="epi-default">
     <colgroup>
         <col style="width:10%">
-        <col style="width:90%">
+        <col style="width:85%">
+        <col style="width:5%">
     </colgroup>
     <thead>
         <tr>
             <th>Language</th>
             <th>Value</th>
-        </tr>
+            <th>Edit</th>
+        </tr> 
     </thead>
     @foreach (var item in Model.PropertyValues)
     {
@@ -20,6 +23,11 @@
             <td>
                 @RenderValue(item.Value)
             </td>
+            <td>
+                <a href="@PageEditing.GetEditUrlForLanguage(item.ContentLink, item.Language)" target="_blank">
+                    <img src="/App_Themes/Default/Images/Tools/png/edit.png" alt="Edit" />
+                </a>
+            </td>
         </tr>
     }
 </table>
@@ -28,7 +36,7 @@
 {
     if (propertyValue == "True")
     {
-        <img src="/App_Themes/Default/Images/Tools/png/Check.png" alt="True" align="center" />
+        <img src="/App_Themes/Default/Images/Tools/png/Check.png" alt="True" />
     }
     else
     {

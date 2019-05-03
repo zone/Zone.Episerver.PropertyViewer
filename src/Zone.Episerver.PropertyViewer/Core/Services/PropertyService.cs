@@ -43,6 +43,7 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
             return languageVersions.Select(x => new PropertyValue
             {
                 Language = x.Language.Name,
+                ContentLink = x.ContentLink,
                 Value = x.GetPropertyValue(reference.PropertyName)
             });
         }
@@ -54,6 +55,7 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
             return languageVersions.Select(x => new PropertyValue
             {
                 Language = x.Language.Name,
+                ContentLink = x.ContentLink,
                 Value = x.Property
                     .GetPropertyValue<BlockData>(reference.PropertyName)
                     .GetPropertyValue(reference.BlockPropertyName)
@@ -85,7 +87,7 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
         {
             return content.Property
                 .Where(x => x.IsPropertyData)
-                .OrderBy(x => x);
+                .OrderBy(x => x.Name);
         }
     }
 }

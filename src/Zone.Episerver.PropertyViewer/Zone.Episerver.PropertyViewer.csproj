@@ -177,9 +177,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Zone.Episerver.PropertyViewer, Version=1.0.0.18552, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Zone.Episerver.PropertyViewer.1.0.0.18552\lib\net461\Zone.Episerver.PropertyViewer.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">

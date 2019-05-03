@@ -292,9 +292,6 @@
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Zone.Episerver.PropertyViewer, Version=1.0.0.18177, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Zone.Episerver.PropertyViewer.1.0.0.18177\lib\net461\Zone.Episerver.PropertyViewer.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -467,8 +464,6 @@
     <Content Include="modules\_protected\Shell\Shell.zip" />
     <Content Include="modules\_protected\CMS\web.config" />
     <Content Include="modules\_protected\CMS\CMS.zip" />
-    <Content Include="modules\_protected\Zone.Episerver.PropertyViewer\Zone.Episerver.PropertyViewer.zip" />
-    <Content Include="modules\_protected\Zone.Episerver.PropertyViewer\Web.config" />
     <None Include="Views\_ReadMe.txt" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
@@ -529,6 +524,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="modules\_protected\Zone.Episerver.PropertyViewer\" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
@@ -553,5 +549,11 @@
   <ItemGroup>
     <NugetPackage Include="Alloy.Mvc.Template.Search.Sources.nuspec" />
     <NugetPackage Include="Alloy.Mvc.Template.Sources.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zone.Episerver.PropertyViewer\Zone.Episerver.PropertyViewer.csproj">
+      <Project>{6bbfb6a0-27da-48b8-b267-0bf0f05d1b5a}</Project>
+      <Name>Zone.Episerver.PropertyViewer</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
