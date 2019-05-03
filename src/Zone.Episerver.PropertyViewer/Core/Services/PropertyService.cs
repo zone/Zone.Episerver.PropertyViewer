@@ -30,7 +30,7 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
             var property = GetProperty(reference);
             if (property.Type != PropertyDataType.Block)
             {
-                throw new Exception("Property is not a block");
+                throw new Exception($"Property '{reference.PropertyName}' is not a block");
             }
 
             return GetProperties((BlockData) property.Value).Select(x => x.Name);
@@ -71,9 +71,13 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
 
         private PageData GetPage(int pageId)
         {
-            _contentLoader.TryGet(new ContentReference(pageId), out PageData page);
+            if (_contentLoader.TryGet(new ContentReference(pageId), out PageData page))
+            {
+                return page;
+            }
 
-            return page;
+           throw new Exception($"Page not found for pageId: {pageId}");
+
         }
 
         private PropertyData GetProperty(PropertyReference reference)

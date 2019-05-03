@@ -69,7 +69,7 @@ namespace Zone.Episerver.PropertyViewer.Controllers
                     BlockProperties = _propertyService.GetBlockPropertyNames(reference)
                 };
 
-                return PartialView(GetPath("BlockPropertyList"), blockModel);
+                return PartialView(GetPath("_BlockPropertyList"), blockModel);
             }
 
             var model = new PropertyValuesModel
