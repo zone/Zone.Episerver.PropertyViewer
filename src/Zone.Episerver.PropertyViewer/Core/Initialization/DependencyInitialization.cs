@@ -11,6 +11,7 @@ namespace Zone.Episerver.PropertyViewer.Core.Initialization
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
             context.Services.AddTransient<IPropertyService, PropertyService>();
+            context.Services.AddTransient<IContentTreeService, ContentTreeService>();
         }
 
         public void Initialize(InitializationEngine context)

@@ -4,6 +4,8 @@ using EPiServer;
 using EPiServer.Core;
 using EPiServer.PlugIn;
 using EPiServer.Shell;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Zone.Episerver.PropertyViewer.Core.Services;
 using Zone.Episerver.PropertyViewer.Models;
 using PlugInArea = EPiServer.PlugIn.PlugInArea;
@@ -18,14 +20,14 @@ namespace Zone.Episerver.PropertyViewer.Controllers
     public class PropertyViewerController : Controller
     {
         private readonly IPropertyService _propertyService;
-        private readonly IContentLoader _contentLoader;
+        private readonly IContentTreeService _contentTreeService;
 
         public PropertyViewerController(
             IPropertyService propertyService,
-            IContentLoader contentLoader)
+            IContentTreeService contentTreeService)
         {
             _propertyService = propertyService;
-            _contentLoader = contentLoader;
+            _contentTreeService = contentTreeService;
         }
 
         public ViewResult Index()
@@ -33,21 +35,10 @@ namespace Zone.Episerver.PropertyViewer.Controllers
             return View(GetPath("Index"), new PropertyViewerModel());
         }
 
-        public JsonResult GetContentTree(int id = 1)
+        public ContentResult GetContentTree(int id = 1)
         {
-            _contentLoader.TryGet(new ContentReference(id), out PageData page);
-
-            return Json(new
-            {
-                id,
-                text = page.Name,
-                children = _contentLoader.GetChildren<PageData>(page.ContentLink)?.Select(s => new
-                {
-                    text = s.Name,
-                    id = s.ContentLink.ToReferenceWithoutVersion().ID,
-                    children = _contentLoader.GetChildren<PageData>(s.ContentLink)?.Any()
-                })
-            }, JsonRequestBehavior.AllowGet);
+            var tree = _contentTreeService.GetContentFamily(id);
+            return CamelCaseJson(tree);
         }
 
         public PartialViewResult GetProperties(int pageId)
@@ -93,6 +84,17 @@ namespace Zone.Episerver.PropertyViewer.Controllers
         private static string GetPath(string viewName)
         {
             return Paths.ToResource("Zone.Episerver.PropertyViewer", $"Views/PropertyViewer/{viewName}.cshtml");
+        }
+
+        private ContentResult CamelCaseJson(object data)
+        {
+            var camelCaseFormatter = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+            var json = JsonConvert.SerializeObject(data, camelCaseFormatter);
+
+            return Content(json, "application/json");
         }
     }
 }

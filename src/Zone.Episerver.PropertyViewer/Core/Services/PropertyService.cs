@@ -20,7 +20,7 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
 
         public IEnumerable<string> GetPropertyNames(int pageId)
         {
-            var page = GetPage(pageId);
+            var page = _contentLoader.Get<PageData>(new ContentReference(pageId));
 
             return GetProperties(page).Select(x => x.Name);
         }
@@ -69,20 +69,9 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
             return property.Type == PropertyDataType.Block;
         }
 
-        private PageData GetPage(int pageId)
-        {
-            if (_contentLoader.TryGet(new ContentReference(pageId), out PageData page))
-            {
-                return page;
-            }
-
-           throw new Exception($"Page not found for pageId: {pageId}");
-
-        }
-
         private PropertyData GetProperty(PropertyReference reference)
         {
-            var page = GetPage(reference.PageId);
+            var page = _contentLoader.Get<PageData>(new ContentReference(reference.PageId));
 
             return page.Property.Get(reference.PropertyName);
         }

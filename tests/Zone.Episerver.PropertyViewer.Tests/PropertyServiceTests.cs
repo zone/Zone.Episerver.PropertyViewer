@@ -27,18 +27,6 @@ namespace Zone.Episerver.PropertyViewer.Tests
         }
 
         [Test]
-        public void GetPropertyNames_InvalidPageId_ThrowsException()
-        {
-            // Arrange
-            const int id = 0;
-            _stubContentLoader.TryGet(new ContentReference(id), out PageData page).Returns(false);
-
-            // Act
-            // Assert
-            Assert.Throws<Exception>(() => _propertyService.GetPropertyNames(id));
-        }
-        
-        [Test]
         public void GetPropertyNames_ValidPageId_ReturnsPropertyNames()
         {
             // Arrange
@@ -52,7 +40,7 @@ namespace Zone.Episerver.PropertyViewer.Tests
                     new PropertyString {Name = "Last property", IsPropertyData = true}
                 }
             };
-            SetUpPage(id, page);
+            _stubContentLoader.Get<PageData>(new ContentReference(id)).Returns(page);
 
             // Act
             var result = _propertyService.GetPropertyNames(id);
@@ -62,26 +50,13 @@ namespace Zone.Episerver.PropertyViewer.Tests
         }
         
         [Test]
-        public void GetBlockPropertyNames_InvalidPageId_ThrowsException()
-        {
-            // Arrange
-            const int id = 0;
-            const string propertyName = "name";
-            _stubContentLoader.TryGet(new ContentReference(id), out PageData page).Returns(false);
-
-            // Act
-            // Assert
-            Assert.Throws<Exception>(() => _propertyService.GetBlockPropertyNames(new PropertyReference(id, propertyName)));
-        }
-        
-        [Test]
         public void GetBlockPropertyNames_InvalidBlockType_ThrowsException()
         {
             // Arrange
             const int id = 1;
             const string propertyName = "name";
             var page = new PageData {Property = {new PropertyString {Name = propertyName}}};
-            SetUpPage(id, page);
+            _stubContentLoader.Get<PageData>(new ContentReference(id)).Returns(page);
 
             // Act
             // Assert
@@ -106,8 +81,7 @@ namespace Zone.Episerver.PropertyViewer.Tests
             };
             var property = new PropertyBlock<BlockData>(block) {Name = propertyName};
             var page = new PageData {Property = {property}};
-
-            SetUpPage(id, page);
+            _stubContentLoader.Get<PageData>(new ContentReference(id)).Returns(page);
 
             // Act
             var result = _propertyService.GetBlockPropertyNames(new PropertyReference(id, propertyName));
@@ -193,7 +167,7 @@ namespace Zone.Episerver.PropertyViewer.Tests
             const int id = 1;
             const string propertyName = "name";
             var page = new PageData {Property = {new PropertyBlock<BlockData> {Name = propertyName}}};
-            SetUpPage(id, page);
+            _stubContentLoader.Get<PageData>(new ContentReference(id)).Returns(page);
 
             // Act
             var result = _propertyService.IsBlock(new PropertyReference(id, propertyName));
@@ -209,24 +183,13 @@ namespace Zone.Episerver.PropertyViewer.Tests
             const int id = 1;
             const string propertyName = "name";
             var page = new PageData {Property = {new PropertyString {Name = propertyName}}};
-            SetUpPage(id, page);
+            _stubContentLoader.Get<PageData>(new ContentReference(id)).Returns(page);
 
             // Act
             var result = _propertyService.IsBlock(new PropertyReference(id, propertyName));
 
             // Assert
             Assert.IsFalse(result);
-        }
-
-        private void SetUpPage(int id, PageData page)
-        {
-            _stubContentLoader
-                .TryGet(new ContentReference(id), out Arg.Any<PageData>())
-                .Returns(x =>
-                { 
-                    x[1] = page;
-                    return true;
-                });
         }
     }
 }
