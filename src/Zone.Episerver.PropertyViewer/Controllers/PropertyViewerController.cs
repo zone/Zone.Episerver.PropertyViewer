@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using EPiServer;
-using EPiServer.Core;
 using EPiServer.PlugIn;
 using EPiServer.Shell;
 using Newtonsoft.Json;
@@ -15,7 +13,7 @@ namespace Zone.Episerver.PropertyViewer.Controllers
     [GuiPlugIn(
         DisplayName = "Property Viewer",
         Area = PlugInArea.AdminMenu,
-        Url = "~/plugins/propertyviewer")]
+        UrlFromModuleFolder = "PropertyViewer")]
     [Authorize(Roles = "Administrators,WebAdmins")]
     public class PropertyViewerController : Controller
     {
@@ -32,7 +30,7 @@ namespace Zone.Episerver.PropertyViewer.Controllers
 
         public ViewResult Index()
         {
-            return View(GetPath("Index"), new PropertyViewerModel());
+            return View("Index", new PropertyViewerModel());
         }
 
         public ContentResult GetContentTree(int id = 1)
@@ -48,7 +46,7 @@ namespace Zone.Episerver.PropertyViewer.Controllers
                 PageProperties = _propertyService.GetPropertyNames(pageId)
             };
 
-            return PartialView(GetPath("_PropertyList"), model);
+            return PartialView("_PropertyList", model);
         }
 
         public PartialViewResult GetPropertyValues(PropertyReference reference)
@@ -60,7 +58,7 @@ namespace Zone.Episerver.PropertyViewer.Controllers
                     BlockProperties = _propertyService.GetBlockPropertyNames(reference)
                 };
 
-                return PartialView(GetPath("_BlockPropertyList"), blockModel);
+                return PartialView("_BlockPropertyList", blockModel);
             }
 
             var model = new PropertyValuesModel
@@ -68,7 +66,7 @@ namespace Zone.Episerver.PropertyViewer.Controllers
                 PropertyValues = _propertyService.GetPropertyValues(reference)
             };
 
-            return PartialView(GetPath("_PropertyValues"), model);
+            return PartialView("_PropertyValues", model);
         }
 
         public PartialViewResult GetBlockPropertyValues(LocalBlockPropertyReference propertyReference)
@@ -78,12 +76,7 @@ namespace Zone.Episerver.PropertyViewer.Controllers
                 PropertyValues = _propertyService.GetBlockPropertyValues(propertyReference)   
             };
 
-            return PartialView(GetPath("_PropertyValues"), model);
-        }
-
-        private static string GetPath(string viewName)
-        {
-            return Paths.ToResource("Zone.Episerver.PropertyViewer", $"Views/PropertyViewer/{viewName}.cshtml");
+            return PartialView("_PropertyValues", model);
         }
 
         private ContentResult CamelCaseJson(object data)

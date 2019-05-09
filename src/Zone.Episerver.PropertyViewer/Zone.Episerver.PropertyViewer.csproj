@@ -191,7 +191,6 @@
   <ItemGroup>
     <Compile Include="Controllers\PropertyViewerController.cs" />
     <Compile Include="Core\Initialization\DependencyInitialization.cs" />
-    <Compile Include="Core\Initialization\CustomRouteInitialization.cs" />
     <Compile Include="Core\Services\ContentTreeService.cs" />
     <Compile Include="Core\Services\IContentTreeService.cs" />
     <Compile Include="Core\Services\IPropertyService.cs" />

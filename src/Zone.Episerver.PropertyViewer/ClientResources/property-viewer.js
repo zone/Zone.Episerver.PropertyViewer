@@ -2,7 +2,7 @@ $(function () {
     $("#jstree").jstree({
         "core": {
             "data": {
-                'url': "/plugins/propertyviewer/getcontenttree/",
+                'url': "/EPiServer/Zone.Episerver.PropertyViewer/PropertyViewer/getcontenttree/",
                 "dataType": "json",
                 "data": function (node) {
                     // jstree requests # for root of tree
@@ -16,7 +16,7 @@ $(function () {
     $("#jstree").on("select_node.jstree",
         function (e, data) {
             $("#PageId").val(data.node.id);
-            $.ajax("/plugins/propertyviewer/getproperties/?pageId=" + data.node.id).done(
+            $.ajax("/EPiServer/Zone.Episerver.PropertyViewer/PropertyViewer/getproperties/?pageId=" + data.node.id).done(
                 function (data) {
                     $("#blockPropertyList").html("");
                     $("#results").html("");
@@ -26,7 +26,7 @@ $(function () {
 
     $("#propertyList").on("change", "select",
         function () {
-            $.ajax("/plugins/propertyviewer/getpropertyvalues/?pageId="
+            $.ajax("/EPiServer/Zone.Episerver.PropertyViewer/PropertyViewer/getpropertyvalues/?pageId="
                 + $("#PageId").val() + "&propertyname=" + this.value).done(
                     function (data) {
                         if (data.indexOf("BlockPropertyName") > -1) {
@@ -41,7 +41,7 @@ $(function () {
 
     $("#blockPropertyList").on("change", "select",
         function () {
-            $.ajax("/plugins/propertyviewer/getblockpropertyvalues/?pageId=" + $("#PageId").val()
+            $.ajax("/EPiServer/Zone.Episerver.PropertyViewer/PropertyViewer/getblockpropertyvalues/?pageId=" + $("#PageId").val()
                 + "&propertyname=" + $("#propertyList select").val()
                 + "&blockpropertyname=" + this.value).done(
                     function (data) {
