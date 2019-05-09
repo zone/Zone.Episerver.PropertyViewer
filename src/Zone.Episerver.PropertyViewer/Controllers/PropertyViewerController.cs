@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using EPiServer.PlugIn;
-using EPiServer.Shell;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Zone.Episerver.PropertyViewer.Core.Services;
@@ -73,7 +71,7 @@ namespace Zone.Episerver.PropertyViewer.Controllers
         {
             var model = new PropertyValuesModel
             {
-                PropertyValues = _propertyService.GetBlockPropertyValues(propertyReference)   
+                PropertyValues = _propertyService.GetBlockPropertyValues(propertyReference) 
             };
 
             return PartialView("_PropertyValues", model);

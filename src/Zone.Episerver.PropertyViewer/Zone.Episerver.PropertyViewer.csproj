@@ -225,6 +225,8 @@
     <Content Include="web.config.uninstall.xdt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Shared\DisplayTemplates\PropertyBoolean.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyData.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
