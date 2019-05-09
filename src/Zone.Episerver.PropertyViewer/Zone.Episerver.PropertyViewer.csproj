@@ -227,6 +227,9 @@
     </Content>
     <Content Include="Views\Shared\DisplayTemplates\PropertyBoolean.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PropertyData.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyContentReference.cshtml" />
+    <Content Include="Views\Shared\_Image.cshtml" />
+    <Content Include="Views\Shared\_ContentReference.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

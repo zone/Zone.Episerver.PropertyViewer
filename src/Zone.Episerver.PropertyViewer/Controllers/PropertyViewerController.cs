@@ -1,5 +1,8 @@
 ﻿using System.Web.Mvc;
+using EPiServer;
+using EPiServer.Core;
 using EPiServer.PlugIn;
+using EPiServer.ServiceLocation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Zone.Episerver.PropertyViewer.Core.Services;
@@ -17,13 +20,16 @@ namespace Zone.Episerver.PropertyViewer.Controllers
     {
         private readonly IPropertyService _propertyService;
         private readonly IContentTreeService _contentTreeService;
+        private readonly IContentLoader _contentLoader;
 
         public PropertyViewerController(
             IPropertyService propertyService,
-            IContentTreeService contentTreeService)
+            IContentTreeService contentTreeService,
+            IContentLoader contentLoader)
         {
             _propertyService = propertyService;
             _contentTreeService = contentTreeService;
+            _contentLoader = contentLoader;
         }
 
         public ViewResult Index()
@@ -75,6 +81,17 @@ namespace Zone.Episerver.PropertyViewer.Controllers
             };
 
             return PartialView("_PropertyValues", model);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult RenderContentReference(ContentReference contentReference)
+        {
+            if (_contentLoader.TryGet(contentReference, out ImageData _))
+            {
+                return PartialView("_Image", contentReference);
+            }
+
+            return PartialView("_ContentReference", contentReference);
         }
 
         private ContentResult CamelCaseJson(object data)
