@@ -96,16 +96,16 @@ namespace Zone.Episerver.PropertyViewer.Tests
             // Arrange
             const int id = 1;
             const string propertyName = "name";
-            const string propertyValue = "value";
             const string language = "en";
             var contentReference = new ContentReference(id);
+            var property = new PropertyString {Name = propertyName, Value = "value"};
             var page = new PageData
             {
                 Property =
                 {
                     new PropertyContentReference {Name = "PageLink", Value = contentReference},
                     new PropertyString {Name = "PageLanguageBranch", Value = language},
-                    new PropertyString {Name = propertyName, Value = propertyValue}
+                    property
                 }
             };
             _stubContentRepository.GetLanguageBranches<PageData>(Arg.Is(contentReference))
@@ -117,7 +117,7 @@ namespace Zone.Episerver.PropertyViewer.Tests
             // Assert
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(language, result[0].Language);
-            Assert.AreEqual(propertyValue, result[0].Value);
+            Assert.AreEqual(property, result[0].Property);
             Assert.AreEqual(contentReference, result[0].ContentLink);
         }
 
@@ -127,16 +127,13 @@ namespace Zone.Episerver.PropertyViewer.Tests
             // Arrange
             const int id = 1;
             const string propertyName = "name";
-            const string propertyValue = "value";
             const string blockPropertyName = "block";
             const string language = "en";
             var contentReference = new ContentReference(id);
+            var property = new PropertyString {Name = blockPropertyName, Value = "value"};
             var block = new BlockData
             {
-                Property =
-                {
-                    new PropertyString {Name = blockPropertyName, Value = propertyValue}
-                }
+                Property = {property}
             };
             var page = new PageData
             {
@@ -156,7 +153,7 @@ namespace Zone.Episerver.PropertyViewer.Tests
             // Assert
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(language, result[0].Language);
-            Assert.AreEqual(propertyValue, result[0].Value);
+            Assert.AreEqual(property, result[0].Property);
             Assert.AreEqual(contentReference, result[0].ContentLink);
         }
 

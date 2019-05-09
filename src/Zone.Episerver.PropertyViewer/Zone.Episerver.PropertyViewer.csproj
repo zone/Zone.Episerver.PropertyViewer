@@ -191,7 +191,6 @@
   <ItemGroup>
     <Compile Include="Controllers\PropertyViewerController.cs" />
     <Compile Include="Core\Initialization\DependencyInitialization.cs" />
-    <Compile Include="Core\Initialization\CustomRouteInitialization.cs" />
     <Compile Include="Core\Services\ContentTreeService.cs" />
     <Compile Include="Core\Services\IContentTreeService.cs" />
     <Compile Include="Core\Services\IPropertyService.cs" />
@@ -226,6 +225,11 @@
     <Content Include="web.config.uninstall.xdt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Shared\DisplayTemplates\PropertyBoolean.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyData.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyContentReference.cshtml" />
+    <Content Include="Views\Shared\_Image.cshtml" />
+    <Content Include="Views\Shared\_ContentReference.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

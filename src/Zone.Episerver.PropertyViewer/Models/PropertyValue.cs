@@ -8,6 +8,6 @@ namespace Zone.Episerver.PropertyViewer.Models
 
         public ContentReference ContentLink { get; set; }
 
-        public string Value { get; set; }
+        public PropertyData Property { get; set; }
     }
 }

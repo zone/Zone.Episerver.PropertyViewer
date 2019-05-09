@@ -18,14 +18,16 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
             _contentRepository = contentRepository;
         }
 
-        public IEnumerable<string> GetPropertyNames(int pageId)
+        public IReadOnlyList<string> GetPropertyNames(int pageId)
         {
             var page = _contentLoader.Get<PageData>(new ContentReference(pageId));
 
-            return GetProperties(page).Select(x => x.Name);
+            return GetProperties(page)
+                .Select(x => x.Name)
+                .ToList();
         }
 
-        public IEnumerable<string> GetBlockPropertyNames(PropertyReference reference)
+        public IReadOnlyList<string> GetBlockPropertyNames(PropertyReference reference)
         {
             var property = GetProperty(reference);
             if (property.Type != PropertyDataType.Block)
@@ -33,33 +35,36 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
                 throw new Exception($"Property '{reference.PropertyName}' is not a block");
             }
 
-            return GetProperties((BlockData) property.Value).Select(x => x.Name);
+            return GetProperties((BlockData) property.Value)
+                .Select(x => x.Name)
+                .ToList();
         }
 
-        public IEnumerable<PropertyValue> GetPropertyValues(PropertyReference reference)
+        public IReadOnlyList<PropertyValue> GetPropertyValues(PropertyReference reference)
         {
             var languageVersions = _contentRepository.GetLanguageBranches<PageData>(new ContentReference(reference.PageId));
 
-            return languageVersions.Select(x => new PropertyValue
-            {
-                Language = x.Language.Name,
-                ContentLink = x.ContentLink,
-                Value = x.GetPropertyValue(reference.PropertyName)
-            });
+            return languageVersions
+                .Select(x => new PropertyValue
+                {
+                    Language = x.Language.Name,
+                    ContentLink = x.ContentLink,
+                    Property = x.Property[reference.PropertyName]
+                }).ToList();
         }
 
-        public IEnumerable<PropertyValue> GetBlockPropertyValues(LocalBlockPropertyReference reference)
+        public IReadOnlyList<PropertyValue> GetBlockPropertyValues(LocalBlockPropertyReference reference)
         {
             var languageVersions = _contentRepository.GetLanguageBranches<PageData>(new ContentReference(reference.PageId));
 
-            return languageVersions.Select(x => new PropertyValue
-            {
-                Language = x.Language.Name,
-                ContentLink = x.ContentLink,
-                Value = x.Property
-                    .GetPropertyValue<BlockData>(reference.PropertyName)
-                    .GetPropertyValue(reference.BlockPropertyName)
-            });
+            return languageVersions
+                .Select(x => new PropertyValue
+                {
+                    Language = x.Language.Name,
+                    ContentLink = x.ContentLink,
+                    Property = x.GetPropertyValue<BlockData>(reference.PropertyName)
+                        .Property[reference.BlockPropertyName]
+                }).ToList();
         }
 
         public bool IsBlock(PropertyReference reference)
@@ -76,7 +81,7 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
             return page.Property.Get(reference.PropertyName);
         }
 
-        private IEnumerable<PropertyData> GetProperties(IContentData content)
+        private static IEnumerable<PropertyData> GetProperties(IContentData content)
         {
             return content.Property
                 .Where(x => x.IsPropertyData)

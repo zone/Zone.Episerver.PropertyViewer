@@ -1,0 +1,10 @@
+﻿@using EPiServer.Editor
+@using EPiServer.Web.Mvc.Html
+@model EPiServer.Core.ContentReference
+
+@if (Model != null)
+{    
+    <a href="@PageEditing.GetEditUrl(Model)" target="_blank">
+        <img src="@Url.ContentUrl(Model)/thumbnail" alt="@Model.ID" />
+    </a>
+}
