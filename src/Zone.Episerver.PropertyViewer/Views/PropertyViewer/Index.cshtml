@@ -10,7 +10,7 @@
 
 @section Scripts {
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/jstree.min.js"></script>
     <script src="@Paths.ToClientResource("Zone.Episerver.PropertyViewer", "ClientResources/property-viewer.js")"></script>
 }
 
@@ -20,6 +20,7 @@
         <div id="jstree" class="epi-paddingVertical-small episerver-pagetree-selfcontained"></div>
         <div id="propertyList" class="epi-size20"></div>
         <div id="blockPropertyList" class="epi-size20"></div>
+        <img id="loading" src="/App_Themes/Default/Images/General/ajaxloader.gif" style="display: none;" alt="Loading..."/>
         <div id="results" class="epi-size20"></div>
     </div>
 </div>

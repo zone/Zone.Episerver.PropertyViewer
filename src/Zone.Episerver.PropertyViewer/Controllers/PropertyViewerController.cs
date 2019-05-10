@@ -37,9 +37,9 @@ namespace Zone.Episerver.PropertyViewer.Controllers
             return View("Index", new PropertyViewerModel());
         }
 
-        public ContentResult GetContentTree(int id = 1)
+        public ContentResult GetContentTree(int contentId)
         {
-            var tree = _contentTreeService.GetContentFamily(id);
+            var tree = _contentTreeService.GetContentFamily(contentId);
             return CamelCaseJson(tree);
         }
 
