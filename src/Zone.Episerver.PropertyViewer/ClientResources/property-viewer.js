@@ -1,10 +1,9 @@
 $(function() {
 
-	var rootUrl = "/EPiServer/Zone.Episerver.PropertyViewer/PropertyViewer/";
 	var loader = document.getElementById("loading");
 	var results = document.getElementById("results");
 	var pageId = document.getElementById("PageId");
-	var $jsTree = $("#jstree");
+	var $jsTree = $("#jsTree");
 	var $propertyList = $("#propertyList");
 	var $blockPropertyList = $("#blockPropertyList");
 
