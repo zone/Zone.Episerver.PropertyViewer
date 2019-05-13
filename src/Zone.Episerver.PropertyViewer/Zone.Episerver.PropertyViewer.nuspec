@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Zone.Episerver.PropertyViewer</id>
+    <version>1.0.0</version>
+    <title>Zone.Episerver.PropertyViewer</title>
+    <authors>Ollie Philpott</authors>
+    <owners>Zone</owners>
+    <licenseUrl>https://github.com/zone/Zone.Episerver.PropertyViewer/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An Episerver add-on for previewing multilingual properties</description>
+    <projectUrl>https://github.com/zone/Zone.Episerver.PropertyViewer/</projectUrl>
+    <copyright>Copyright © 2019</copyright>
+    <tags>EPiServerModulePackage EPiServerAddOn Episerver Zone</tags>
+    <dependencies>
+      <dependency id="EPiServer.CMS.AspNet" version="[11.3.0,12.0.0)" />
+      <dependency id="EPiServer.CMS.Core" version="[11.3.0,12.0.0)" />
+      <dependency id="EPiServer.CMS.UI.Core" version="[11.4.1,12.0.0)" />
+      <dependency id="EPiServer.Framework" version="[11.3.0,12.0.0)" />
+      <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Zone.Episerver.PropertyViewer.dll" target="lib\net461\" />
+    <file src="modules\_protected\Zone.Episerver.PropertyViewer\Zone.Episerver.PropertyViewer.zip" target="content\modules\_protected\Zone.Episerver.PropertyViewer\" />
+    <file src="modules\_protected\Zone.Episerver.PropertyViewer\Web.config" target="content\modules\_protected\Zone.Episerver.PropertyViewer\" />
+	  <file src="web.config.install.xdt" target="content" />
+    <file src="web.config.uninstall.xdt" target="content" />
+  </files>
+</package>

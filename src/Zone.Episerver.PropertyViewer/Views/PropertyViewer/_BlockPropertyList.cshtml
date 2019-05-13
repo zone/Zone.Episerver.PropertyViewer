@@ -1,0 +1,5 @@
+﻿@using System.Web.Mvc.Html
+@inherits System.Web.Mvc.WebViewPage<Zone.Episerver.PropertyViewer.Models.BlockPropertyListModel>
+
+@Html.LabelFor(m => m.BlockPropertyName)
+@Html.DropDownListFor(m => m.BlockPropertyName, new System.Web.Mvc.SelectList(Model.BlockProperties), "Select property\u2026")
