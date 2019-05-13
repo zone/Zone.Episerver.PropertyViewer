@@ -1,0 +1,77 @@
+﻿#jsTree.jstree-default .jstree-hovered {
+    background: none;
+}
+
+#jsTree.jstree-default .jstree-clicked {
+    background-color: #575757;
+    color: #e6e6e6;
+}
+
+#jsTree.jstree-default .jstree-themeicon {
+    display: none;
+}
+
+#jsTree.jstree-default .jstree-anchor {
+    line-height: 18px;
+    height: 18px;
+    display: initial;
+    border-radius: initial;
+    margin-left: 3px;
+}
+
+#jsTree.jstree-default .jstree-node {
+    min-height: 18px;
+    line-height: 18px;
+    margin-left: 0;
+}
+
+#jsTree.jstree-default .jstree-children {
+    margin-left: 1.1em;
+}
+
+#jsTree.jstree-default .jstree-open > .jstree-ocl {
+    background-image: url("/App_Themes/Default/Images/ExplorerTree/Tminus.gif");
+    background-position: 0 0;
+    width: 14px;
+    height: 18px;
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+
+#jsTree.jstree-default li:last-child.jstree-open > .jstree-ocl {
+    background-image: url("/App_Themes/Default/Images/ExplorerTree/Lminus.gif");
+}
+
+#jsTree.jstree-default .jstree-closed > .jstree-ocl {
+    background-image: url("/App_Themes/Default/Images/ExplorerTree/Tplus.gif");
+    background-position: 0 0;
+    width: 14px;
+    height: 18px;
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+
+#jsTree.jstree-default .jstree-closed:last-child > .jstree-ocl {
+    background-image: url("/App_Themes/Default/Images/ExplorerTree/Lplus.gif");
+}
+
+#jsTree.jstree-default .jstree-leaf > .jstree-ocl {
+    background-image: url("/App_Themes/Default/Images/ExplorerTree/T.gif");
+    background-position: 0 0;
+    width: 14px;
+    height: 18px;
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+
+#jsTree.jstree-default .jstree-leaf:last-child > .jstree-ocl {
+    background-image: url("/App_Themes/Default/Images/ExplorerTree/L.gif");
+}
+
+#jsTree.jstree-default li {
+    background: url("/App_Themes/Default/Images/ExplorerTree/I.gif") repeat-y left top;
+}
+
+#jsTree.jstree-default li:last-child {
+    background: url("/App_Themes/Default/Images/ExplorerTree/I.gif") no-repeat left top;
+}

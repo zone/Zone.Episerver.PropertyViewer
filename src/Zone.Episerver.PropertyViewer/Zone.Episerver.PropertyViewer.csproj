@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".nuget\NuGet.exe" />
+    <Content Include="ClientResources\property-viewer.css" />
     <Content Include="ClientResources\property-viewer.js" />
     <Content Include="Web.config" />
   </ItemGroup>
