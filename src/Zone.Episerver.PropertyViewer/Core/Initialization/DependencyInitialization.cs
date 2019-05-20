@@ -1,4 +1,5 @@
-﻿using EPiServer.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using Zone.Episerver.PropertyViewer.Core.Services;
@@ -6,6 +7,7 @@ using Zone.Episerver.PropertyViewer.Core.Services;
 namespace Zone.Episerver.PropertyViewer.Core.Initialization
 {
     [InitializableModule]
+    [ExcludeFromCodeCoverage]
     public class DependencyInitialization : IConfigurableModule 
     {
         public void ConfigureContainer(ServiceConfigurationContext context)
