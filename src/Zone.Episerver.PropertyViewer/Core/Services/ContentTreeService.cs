@@ -18,12 +18,12 @@ namespace Zone.Episerver.PropertyViewer.Core.Services
         {
             var page = _contentLoader.Get<PageData>(new ContentReference(rootId));
             var children = _contentLoader
-                .GetChildren<PageData>(page.ContentLink)
+                .GetChildren<PageData>(page.ContentLink, LanguageSelector.MasterLanguage())
                 .Select(s => new ContentTreeChildItem
                 {
                     Id = s.ContentLink.ToReferenceWithoutVersion().ID,
                     Text = s.Name,
-                    Children = _contentLoader.GetChildren<PageData>(s.ContentLink).Any()
+                    Children = _contentLoader.GetChildren<PageData>(s.ContentLink, LanguageSelector.MasterLanguage()).Any()
                 });
 
             return new ContentTreeRootItem
