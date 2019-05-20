@@ -2,7 +2,7 @@
 {
     public class LocalBlockPropertyReference : PropertyReference
     {
-        public LocalBlockPropertyReference() : base()
+        public LocalBlockPropertyReference()
         {
         }
 

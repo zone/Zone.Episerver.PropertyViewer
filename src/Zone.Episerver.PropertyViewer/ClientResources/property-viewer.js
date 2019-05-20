@@ -14,7 +14,7 @@ $(function() {
 				"dataType": "json",
 				"data": function(node) {
 					// jstree requests # for root of tree
-					return { "contentId": node.id === "#" ? "1" : node.id };
+					return { "pageId": node.id === "#" ? "1" : node.id };
 				}
 			}
 		},

@@ -2,7 +2,6 @@
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.PlugIn;
-using EPiServer.ServiceLocation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Zone.Episerver.PropertyViewer.Core.Services;
@@ -34,12 +33,12 @@ namespace Zone.Episerver.PropertyViewer.Controllers
 
         public ViewResult Index()
         {
-            return View("Index", new PropertyViewerModel());
+            return View(new PropertyViewerModel());
         }
 
-        public ContentResult GetContentTree(int contentId)
+        public ContentResult GetContentTree(int pageId)
         {
-            var tree = _contentTreeService.GetContentFamily(contentId);
+            var tree = _contentTreeService.GetContentFamily(pageId);
             return CamelCaseJson(tree);
         }
 
