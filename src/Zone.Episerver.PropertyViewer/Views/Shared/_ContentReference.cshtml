@@ -1,10 +1,10 @@
 ﻿@using EPiServer.Editor
 @using EPiServer.Web.Mvc.Html
-@model EPiServer.Core.ContentReference
+@model Zone.Episerver.PropertyViewer.Models.ContentReferenceModel
 
 @if (Model != null)
 {
-    <a href="@PageEditing.GetEditUrl(Model)" target="_blank">
-        @Model.ID
+    <a href="@PageEditing.GetEditUrlForLanguage(Model.ContentReference, Model.Language)" target="_blank">
+        @Model.ContentReference.ID
     </a>
 }

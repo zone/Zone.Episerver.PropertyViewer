@@ -83,14 +83,20 @@ namespace Zone.Episerver.PropertyViewer.Controllers
         }
 
         [ChildActionOnly]
-        public PartialViewResult RenderContentReference(ContentReference contentReference)
+        public PartialViewResult RenderContentReference(ContentReference contentReference, string language)
         {
             if (_contentLoader.TryGet(contentReference, out ImageData _))
             {
                 return PartialView("_Image", contentReference);
             }
 
-            return PartialView("_ContentReference", contentReference);
+            var model = new ContentReferenceModel
+            {
+                ContentReference = contentReference,
+                Language = language
+            };
+
+            return PartialView("_ContentReference", model);
         }
 
         private ContentResult CamelCaseJson(object data)

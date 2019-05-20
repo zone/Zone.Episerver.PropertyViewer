@@ -190,7 +190,7 @@ namespace Zone.Episerver.PropertyViewer.Tests.Controllers
             _stubContentLoader.TryGet(contentReference, out ImageData _).Returns(true);
 
             // Act
-            var result = _propertyViewerController.RenderContentReference(contentReference);
+            var result = _propertyViewerController.RenderContentReference(contentReference, "en");
 
             // Assert
             Assert.AreEqual("_Image", result.ViewName);
@@ -203,7 +203,7 @@ namespace Zone.Episerver.PropertyViewer.Tests.Controllers
             var contentReference = new ContentReference(123);
 
             // Act
-            var result = _propertyViewerController.RenderContentReference(contentReference);
+            var result = _propertyViewerController.RenderContentReference(contentReference, "en");
 
             // Assert
             Assert.AreEqual("_ContentReference", result.ViewName);
