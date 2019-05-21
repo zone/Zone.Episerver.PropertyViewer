@@ -1,3 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<EPiServer.Core.PropertyContentReference>
+﻿@using System.Web.Mvc.Html
+@inherits System.Web.Mvc.WebViewPage<EPiServer.Core.PropertyContentReference>
 
 @Html.Action("RenderContentReference", "PropertyViewer", new { contentReference = Model.ContentLink })
