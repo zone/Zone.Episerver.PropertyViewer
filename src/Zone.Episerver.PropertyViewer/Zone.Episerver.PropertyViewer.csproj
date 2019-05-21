@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".nuget\NuGet.exe" />
+    <Content Include="ClientResources\property-viewer.css" />
     <Content Include="ClientResources\property-viewer.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -196,11 +197,12 @@
     <Compile Include="Core\Services\IPropertyService.cs" />
     <Compile Include="Core\Services\PropertyService.cs" />
     <Compile Include="Models\BlockPropertyListModel.cs" />
+    <Compile Include="Models\ContentReferenceModel.cs" />
     <Compile Include="Models\ContentTreeItem.cs" />
     <Compile Include="Models\ContentTreeChildItem.cs" />
     <Compile Include="Models\ContentTreeRootItem.cs" />
     <Compile Include="Models\PropertyListModel.cs" />
-    <Compile Include="Models\LocalBlockRefence.cs" />
+    <Compile Include="Models\LocalBlockPropertyReference.cs" />
     <Compile Include="Models\PropertyReference.cs" />
     <Compile Include="Models\PropertyValue.cs" />
     <Compile Include="Models\PropertyValuesModel.cs" />
@@ -230,6 +232,7 @@
     <Content Include="Views\Shared\DisplayTemplates\PropertyContentReference.cshtml" />
     <Content Include="Views\Shared\_Image.cshtml" />
     <Content Include="Views\Shared\_ContentReference.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyContentArea.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

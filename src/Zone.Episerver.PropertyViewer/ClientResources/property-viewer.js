@@ -1,10 +1,9 @@
 $(function() {
 
-	var rootUrl = "/EPiServer/Zone.Episerver.PropertyViewer/PropertyViewer/";
 	var loader = document.getElementById("loading");
 	var results = document.getElementById("results");
 	var pageId = document.getElementById("PageId");
-	var $jsTree = $("#jstree");
+	var $jsTree = $("#jsTree");
 	var $propertyList = $("#propertyList");
 	var $blockPropertyList = $("#blockPropertyList");
 
@@ -15,7 +14,7 @@ $(function() {
 				"dataType": "json",
 				"data": function(node) {
 					// jstree requests # for root of tree
-					return { "contentId": node.id === "#" ? "1" : node.id };
+					return { "pageId": node.id === "#" ? "1" : node.id };
 				}
 			}
 		},

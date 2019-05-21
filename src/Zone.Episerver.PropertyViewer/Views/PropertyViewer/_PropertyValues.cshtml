@@ -21,7 +21,7 @@
                 @Model.PropertyValues[i].Language
             </td>
             <td>
-                @Html.DisplayFor(m => m.PropertyValues[i].Property)
+                @Html.DisplayFor(m => m.PropertyValues[i].Property, new { language = Model.PropertyValues[i].Language})
             </td>
             <td>
                 <a href="@PageEditing.GetEditUrlForLanguage(Model.PropertyValues[i].ContentLink, Model.PropertyValues[i].Language)" target="_blank">

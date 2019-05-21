@@ -10,6 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An Episerver add-on for previewing multilingual properties</description>
     <projectUrl>https://github.com/zone/Zone.Episerver.PropertyViewer/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/zone/Zone.Episerver.PropertyViewer/develop/Zone.jpg</iconUrl>
     <copyright>Copyright © 2019</copyright>
     <tags>EPiServerModulePackage EPiServerAddOn Episerver Zone</tags>
     <dependencies>
