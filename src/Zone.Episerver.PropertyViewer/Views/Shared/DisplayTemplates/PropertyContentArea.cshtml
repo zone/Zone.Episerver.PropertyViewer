@@ -1,5 +1,5 @@
 ﻿@using EPiServer.Core
-@model EPiServer.SpecializedProperties.PropertyContentArea
+@inherits System.Web.Mvc.WebViewPage<EPiServer.SpecializedProperties.PropertyContentArea>
 
 @if (Model.Value != null && ((ContentArea)Model.Value).Items.Any())
 {
