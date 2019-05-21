@@ -1,0 +1,13 @@
+﻿@inherits System.Web.Mvc.WebViewPage<EPiServer.SpecializedProperties.PropertyLinkCollection>
+
+@if (Model.Links != null && Model.Links.Any())
+{
+    <ul>
+        @foreach (var item in Model.Links)
+        {
+            <li>
+                @Html.Raw(item.ToMappedLink()) <em>(@item.ToMappedLink())</em>
+            </li>
+        }
+    </ul>
+}

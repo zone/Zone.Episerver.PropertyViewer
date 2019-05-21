@@ -233,6 +233,7 @@
     <Content Include="Views\Shared\_Image.cshtml" />
     <Content Include="Views\Shared\_ContentReference.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PropertyContentArea.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyLinkCollection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
