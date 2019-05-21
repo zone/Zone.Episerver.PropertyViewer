@@ -1,0 +1,14 @@
+﻿@using EPiServer.Core
+@model EPiServer.SpecializedProperties.PropertyContentArea
+
+@if (Model.Value != null && ((ContentArea)Model.Value).Items.Any())
+{
+    <ul>
+        @foreach (var item in ((ContentArea)Model.Value).Items)
+        {
+            <li>
+                @Html.Action("RenderContentReference", "PropertyViewer", new { contentReference = item.ContentLink, language = ViewData["language"] })
+            </li>
+        }
+    </ul>
+}

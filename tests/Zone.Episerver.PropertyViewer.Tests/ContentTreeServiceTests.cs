@@ -59,9 +59,9 @@ namespace Zone.Episerver.PropertyViewer.Tests
                 }
             };
             _stubContentLoader.Get<PageData>(rootReference).Returns(rootPage);
-            _stubContentLoader.GetChildren<PageData>(rootReference).Returns(new List<PageData>{childPage1, childPage2});
-            _stubContentLoader.GetChildren<PageData>(childReference1).Returns(new List<PageData>{new PageData()});
-            _stubContentLoader.GetChildren<PageData>(childReference2).Returns(Enumerable.Empty<PageData>());
+            _stubContentLoader.GetChildren<PageData>(rootReference, Arg.Any<LanguageSelector>()).Returns(new List<PageData>{childPage1, childPage2});
+            _stubContentLoader.GetChildren<PageData>(childReference1, Arg.Any<LanguageSelector>()).Returns(new List<PageData>{new PageData()});
+            _stubContentLoader.GetChildren<PageData>(childReference2, Arg.Any<LanguageSelector>()).Returns(Enumerable.Empty<PageData>());
 
             // Act
             var result = _contentTreeService.GetContentFamily(rootId);
