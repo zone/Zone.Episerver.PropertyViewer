@@ -3,7 +3,7 @@ An Episerver add-on to view multi-lingual properties
 
 This module adds a GUI plugin to the admin section of the Episerver CMS that allows you to navigate the content tree and preview the value of properties across all languages on a single screen.
 
-![Property Viewer 1.1.0](https://imgur.com/4m5PRZQ)
+![Property Viewer 1.1.0](https://i.imgur.com/4m5PRZQ.gif)
 
 ## Release notes
 
