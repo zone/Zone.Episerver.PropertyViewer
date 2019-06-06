@@ -6,21 +6,26 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="@Paths.ToClientResource("Zone.Episerver.PropertyViewer", "ClientResources/property-viewer.css")" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/themes/default/style.min.css" />
 }
 
 @section Scripts {
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/jstree.min.js"></script>
     <script src="@Paths.ToClientResource("Zone.Episerver.PropertyViewer", "ClientResources/property-viewer.js")"></script>
 }
 
 <div class="epi-contentContainer">
     <div class="epi-formArea">
+        <p>Select a page to view its properties</p>
         @Html.HiddenFor(m => m.PageId)
-        <div id="jstree" class="epi-paddingVertical-small episerver-pagetree-selfcontained"></div>
+        <div class="epi-paddingVertical-small episerver-pagetree-selfcontained">
+            <div id="jsTree" class="episerver-pagetreeview"></div>
+        </div>
         <div id="propertyList" class="epi-size20"></div>
         <div id="blockPropertyList" class="epi-size20"></div>
+        <img id="loading" src="/App_Themes/Default/Images/General/ajaxloader.gif" style="display: none;" alt="Loading..." />
         <div id="results" class="epi-size20"></div>
     </div>
 </div>

@@ -4,6 +4,6 @@ namespace Zone.Episerver.PropertyViewer.Models
 {
     public class PropertyValuesModel
     {
-        public IEnumerable<PropertyValueModel> PropertyValues { get; set; }
+        public IReadOnlyList<PropertyValue> PropertyValues { get; set; }
     }
 }

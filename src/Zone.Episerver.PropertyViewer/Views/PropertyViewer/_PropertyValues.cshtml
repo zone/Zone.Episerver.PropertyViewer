@@ -1,37 +1,34 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Zone.Episerver.PropertyViewer.Models.PropertyValuesModel>
+﻿@using EPiServer.Editor
+@using System.Web.Mvc.Html
+@inherits System.Web.Mvc.WebViewPage<Zone.Episerver.PropertyViewer.Models.PropertyValuesModel>
 
 <table class="epi-default">
     <colgroup>
         <col style="width:10%">
-        <col style="width:90%">
+        <col style="width:85%">
+        <col style="width:5%">
     </colgroup>
     <thead>
         <tr>
             <th>Language</th>
             <th>Value</th>
+            <th>Edit</th>
         </tr>
     </thead>
-    @foreach (var item in Model.PropertyValues)
+    @for (var i = 0; i < Model.PropertyValues.Count; i++)
     {
         <tr>
             <td>
-                @item.Language
+                @Model.PropertyValues[i].Language
             </td>
             <td>
-                @RenderValue(item.Value)
+                @Html.DisplayFor(m => m.PropertyValues[i].Property, new { language = Model.PropertyValues[i].Language})
+            </td>
+            <td>
+                <a href="@PageEditing.GetEditUrlForLanguage(Model.PropertyValues[i].ContentLink, Model.PropertyValues[i].Language)" target="_blank">
+                    <img src="/App_Themes/Default/Images/Tools/png/edit.png" alt="Edit" />
+                </a>
             </td>
         </tr>
     }
 </table>
-
-@helper RenderValue(string propertyValue)
-{
-    if (propertyValue == "True")
-    {
-        <img src="/App_Themes/Default/Images/Tools/png/Check.png" alt="True" align="center" />
-    }
-    else
-    {
-        @propertyValue
-    }
-}

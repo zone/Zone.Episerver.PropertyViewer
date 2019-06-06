@@ -32,6 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -184,16 +185,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".nuget\NuGet.exe" />
+    <Content Include="ClientResources\property-viewer.css" />
     <Content Include="ClientResources\property-viewer.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PropertyViewerController.cs" />
-    <Compile Include="Initialization\CustomRouteInitialization.cs" />
+    <Compile Include="Core\Initialization\DependencyInitialization.cs" />
+    <Compile Include="Core\Services\ContentTreeService.cs" />
+    <Compile Include="Core\Services\IContentTreeService.cs" />
+    <Compile Include="Core\Services\IPropertyService.cs" />
+    <Compile Include="Core\Services\PropertyService.cs" />
     <Compile Include="Models\BlockPropertyListModel.cs" />
+    <Compile Include="Models\ContentReferenceModel.cs" />
+    <Compile Include="Models\ContentTreeItem.cs" />
+    <Compile Include="Models\ContentTreeChildItem.cs" />
+    <Compile Include="Models\ContentTreeRootItem.cs" />
     <Compile Include="Models\PropertyListModel.cs" />
+    <Compile Include="Models\LocalBlockPropertyReference.cs" />
     <Compile Include="Models\PropertyReference.cs" />
-    <Compile Include="Models\PropertyValueModel.cs" />
+    <Compile Include="Models\PropertyValue.cs" />
     <Compile Include="Models\PropertyValuesModel.cs" />
     <Compile Include="Models\PropertyViewerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,6 +227,13 @@
     <Content Include="web.config.uninstall.xdt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Shared\DisplayTemplates\PropertyBoolean.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyData.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyContentReference.cshtml" />
+    <Content Include="Views\Shared\_Image.cshtml" />
+    <Content Include="Views\Shared\_ContentReference.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyContentArea.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PropertyLinkCollection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

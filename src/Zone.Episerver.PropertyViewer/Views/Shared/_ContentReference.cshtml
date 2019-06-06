@@ -1,0 +1,9 @@
+﻿@using EPiServer.Editor
+@inherits System.Web.Mvc.WebViewPage<Zone.Episerver.PropertyViewer.Models.ContentReferenceModel>
+
+@if (Model != null)
+{
+    <a href="@PageEditing.GetEditUrlForLanguage(Model.ContentReference, Model.Language)" target="_blank">
+        @Model.ContentReference.ID
+    </a>
+}

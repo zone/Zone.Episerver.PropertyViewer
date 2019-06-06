@@ -93,6 +93,11 @@
     </PropertyGroup>
     <Exec Command="$(NugetCommand)"/>
 
+    <ItemGroup>
+      <AddOnFiles Include="$(TmpOutDir)\content\**\*.*"/>
+    </ItemGroup>
+    <Copy SkipUnchangedFiles="false" SourceFiles="@(AddOnFiles)" DestinationFiles="@(AddOnFiles->'$(SolutionDir)\Zone.Episerver.PropertyViewer.Sample\modules\_protected\Zone.Episerver.PropertyViewer\%(RecursiveDir)%(Filename)%(Extension)')" />
+
     <!-- Cleanup -->
     <RemoveDir Directories="$(TmpOutDir)" />
 
