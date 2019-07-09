@@ -6,11 +6,12 @@ $(function() {
 	var $jsTree = $("#jsTree");
 	var $propertyList = $("#propertyList");
 	var $blockPropertyList = $("#blockPropertyList");
+    var config = window.propertyViewerConfig;
 
 	$jsTree.jstree({
 		"core": {
 			"data": {
-				"url": buildUrl("GetContentTree"),
+				"url": config.getContentTreeUrl,
 				"dataType": "json",
 				"data": function(node) {
 					// jstree requests # for root of tree
@@ -27,7 +28,7 @@ $(function() {
 			showLoader(true);
 			pageId.value = data.node.id;
 
-			$.ajax(buildUrl("GetProperties") + "?pageId=" + data.node.id)
+			$.ajax(config.getPropertiesUrl + "?pageId=" + data.node.id)
 				.done(function(data) {
 					$propertyList.html(data);
 					hideLoader(false);
@@ -40,7 +41,7 @@ $(function() {
 			clearResults();
 			clearBlockProperties();
 			showLoader(true);
-			$.ajax(buildUrl("GetPropertyValues") + "?pageId=" +
+			$.ajax(config.getPropertyValuesUrl + "?pageId=" +
 					pageId.value +
 					"&propertyname=" +
 					this.value)
@@ -59,7 +60,7 @@ $(function() {
 		function() {
 			clearResults();
 			showLoader(true);
-			$.ajax(buildUrl("GetBlockPropertyValues") + "?pageId=" +
+			$.ajax(config.getBlockPropertyValuesUrl + "?pageId=" +
 					pageId.value +
 					"&propertyname=" +
 					$propertyList.find("select").val() +
@@ -70,10 +71,6 @@ $(function() {
 					hideLoader(false);
 				});
 		});
-
-    function buildUrl(action) {
-        return "/EPiServer/Zone.Episerver.PropertyViewer/PropertyViewer/" + action + "/";
-    }
 
 	function clearAll() {
 		clearProperties();
