@@ -1,6 +1,6 @@
 ﻿@inherits System.Web.Mvc.WebViewPage<EPiServer.Core.PropertyBoolean>
 
-@if (Model.Boolean.GetValueOrDefault())
+@if (Model != null && Model.Boolean.GetValueOrDefault())
 {
     <img src="/App_Themes/Default/Images/Tools/png/Check.png" alt="True" />
 }

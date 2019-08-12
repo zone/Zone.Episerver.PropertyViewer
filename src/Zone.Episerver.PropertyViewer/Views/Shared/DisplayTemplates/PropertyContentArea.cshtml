@@ -2,7 +2,7 @@
 @using EPiServer.Core
 @inherits System.Web.Mvc.WebViewPage<EPiServer.SpecializedProperties.PropertyContentArea>
 
-@if (Model.Value != null && ((ContentArea)Model.Value).Items.Any())
+@if (Model != null && Model.Value != null && ((ContentArea)Model.Value).Items.Any())
 {
     <ul>
         @foreach (var item in ((ContentArea)Model.Value).Items)
